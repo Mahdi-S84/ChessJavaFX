@@ -8,8 +8,10 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
         board.printBoard();
+        board.board[7][1]=new Empty();
+        board.printBoard();
         //add achmez method
-        board.WR1.move(4,0,board.board);
+        board.BK.shortBlackCastling(7,1, board.board, board.BR1);
         board.printBoard();
     }
 }
