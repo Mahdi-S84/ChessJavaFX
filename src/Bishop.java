@@ -5,6 +5,13 @@ public class Bishop extends Piece {
 
     }
 
+    public boolean canGo(int i, int j){
+        if(Math.abs(this.j-j) == Math.abs(this.i-i)){
+            return  true;
+        }
+        return  false;
+    }
+
     public boolean isValidMove(int i, int j){
         return true;
     }

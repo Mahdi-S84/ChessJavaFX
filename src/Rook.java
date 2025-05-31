@@ -4,7 +4,7 @@ public class Rook extends Piece {
         super(color,i,j,"rook");
     }
     public boolean canGo(int i, int j){
-        if((i==this.i || j==this.j)&&(i!=this.i && j!=this.j)){
+        if(i==this.i ^ j==this.j){
             System.out.println("Rook can go");
             return true;
         }

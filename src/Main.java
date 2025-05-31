@@ -9,7 +9,7 @@ public class Main {
         Board board = new Board();
         board.printBoard();
         //add achmez method
-        board.WR1.move(4,0,board.board);
+        board.WP1.move(0,4,board.board);
         board.printBoard();
     }
 }
