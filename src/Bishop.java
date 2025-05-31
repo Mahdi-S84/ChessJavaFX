@@ -12,8 +12,18 @@ public class Bishop extends Piece {
         return  false;
     }
 
-    public boolean isValidMove(int i, int j){
-        return true;
+    public boolean isValidMove(int i, int j , Spaceoccupier[][] board){
+        boolean state = false;
+        for(int k=this.i;k<i;k++){
+            for(int h=this.j;h<j;h++){
+                if(k == h && board[k][h].getName() != "null" && board[this.i][this.j].color != board[i][j].color){
+                    state = true;
+                }
+            }
+        }
+        return state;
+
+        
     }
 
     public void move(int fi,int fj, Spaceoccupier[][] board){
