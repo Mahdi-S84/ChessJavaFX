@@ -1,5 +1,5 @@
 public class Rook extends Piece {
-
+    public boolean didMove=false;
     Rook(char color , int i , int j){
         super(color,i,j,"rook");
     }
@@ -24,6 +24,7 @@ public class Rook extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
+            didMove=true;
         }
     }
 }
