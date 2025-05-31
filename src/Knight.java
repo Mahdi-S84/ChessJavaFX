@@ -29,4 +29,10 @@ public class Knight extends Piece {
             this.j = fj;
         }
     }
+
+    @Override
+    public boolean canAttack(int targetI, int targetJ, Spaceoccupier[][] board) {
+        return isValidMove(targetI, targetJ, board);
+    }
+
 }

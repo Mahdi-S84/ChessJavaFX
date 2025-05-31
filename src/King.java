@@ -123,4 +123,10 @@ public class King extends Piece {
             rook.didMove=true;
         }
     }
+
+    @Override
+    public boolean canAttack(int targetI, int targetJ, Spaceoccupier[][] board) {
+        return canGo(targetI, targetJ);
+    }
+
 }
