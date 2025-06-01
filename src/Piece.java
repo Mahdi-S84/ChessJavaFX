@@ -1,5 +1,4 @@
 public abstract class Piece extends Spaceoccupier {
-    protected char color;
     protected int i;
     protected int j;
     protected String name;
