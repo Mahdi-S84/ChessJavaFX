@@ -42,21 +42,10 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
         board.printBoard();
-        board.WP1.move(2,0, board.board);
-        board.BP6.move(5,5, board.board);
-        board.BP8.move(4,7,board.board);
-        board.board[0][6]=new Empty();
-        board.board[4][4]=board.WN2;
-        System.out.println(board.WN2.color);
-        System.out.println(board.board[0][1].color);
-        board.BP6.move(4,4, board.board);
-        board.board[7][2]=new Empty();
-        board.board[3][1]=board.BB1;
-        board.WP1.move(3,1, board.board);
-        board.board[0][7]=new Empty();
-        board.board[3][6]=board.WR2;
-        board.BP8.move(3,6, board.board);
-
+        board.WP1.move(3,0, board.board);
+        board.WP1.move(4,0, board.board);
+        board.board[5][1]=board.BB1;
+        board.WP1.move(5,1, board.board);
         board.printBoard();
 
 
