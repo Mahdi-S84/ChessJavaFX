@@ -5,11 +5,16 @@
 //import javafx.stage.Stage;
 
 public class Main {
+
     public static void main(String[] args) {
         Board board = new Board();
         board.printBoard();
-        //add achmez method
-        board.WP1.move(0,3,board.board);
+        board.WP1.move(3, 0, board.board);
+        board.WP1.move(4, 0, board.board);
+        board.board[5][1] = board.BB1;
+        board.WP1.move(5, 1, board.board);
         board.printBoard();
+
+
     }
 }
