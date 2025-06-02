@@ -71,6 +71,7 @@ public class King extends Piece {
             this.i = fi;
             this.j = fj;
             didMove=true;
+            Board.moveNumber++;
         }
     }
     public boolean isValidBigBlackCastling(int i, int j,Rook rook,King king,Spaceoccupier[][] board){
@@ -144,6 +145,7 @@ public class King extends Piece {
             rook.j=4;
             didMove=true;
             rook.didMove=true;
+            Board.moveNumber++;
         }
     }
     public void bigWhiteCastling(int fi,int fj, Spaceoccupier[][] board,Rook rook){
@@ -157,6 +159,7 @@ public class King extends Piece {
             rook.j=4;
             didMove=true;
             rook.didMove=true;
+            Board.moveNumber++;
         }
     }
     public void shortBlackCastling(int fi,int fj, Spaceoccupier[][] board,Rook rook){
@@ -170,6 +173,7 @@ public class King extends Piece {
             rook.j=2;
             didMove=true;
             rook.didMove=true;
+            Board.moveNumber++;
         }
     }
     public void shortWhiteCastling(int fi,int fj, Spaceoccupier[][] board,Rook rook){
@@ -183,6 +187,7 @@ public class King extends Piece {
             rook.j=2;
             didMove=true;
             rook.didMove=true;
+            Board.moveNumber++;
         }
     }
 

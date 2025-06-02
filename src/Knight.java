@@ -27,6 +27,7 @@ public class Knight extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
+            Board.moveNumber++;
         }
     }
 

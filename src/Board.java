@@ -1,6 +1,7 @@
 public class  Board {
     static int  rows=8;
     static int columns=8;
+    public static int moveNumber=0;
     Rook WR1 = new Rook('w',0,0);
     Rook WR2 = new Rook('w',0,7);
     Knight WN1 = new Knight('w', 0, 1);
