@@ -12,7 +12,7 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean isCheck(char kingColor, Spaceoccupier[][] board) {
+    static public boolean isCheck(char kingColor, Spaceoccupier[][] board) {
         int kingI = -1, kingJ = -1;
 
         for (int i = 0; i < 8; i++) {
@@ -59,21 +59,18 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean isValidMove(int i, int j) {
-        if (canGo(i, j)) {
-            return true;
-        }
-        return false;
+    public boolean isValidMove(int i, int j, Spaceoccupier[][] board) {
+        return canGo(i , j ) && isValidAboutCheck(i,j,board) && !finalHouseIsBlocked(i,j,board);
     }
 
-    public void move(int fi, int fj, Spaceoccupier[][] board) {
-        if (isValidMove(fi, fj)) {
+    public void move(int fi, int fj, Spaceoccupier[][] board,Board boards) {
+        if (isValidMove(fi, fj,board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
             didMove=true;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 
@@ -108,7 +105,7 @@ public class King extends Piece {
         return false;
     }
 
-    public void bigBlackCastling(int fi, int fj, Spaceoccupier[][] board, Rook rook) {
+    public void bigBlackCastling(int fi, int fj, Spaceoccupier[][] board,Board boards, Rook rook) {
         if (isValidBigBlackCastling(fi, fj, rook, this, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
@@ -119,11 +116,11 @@ public class King extends Piece {
             rook.j=4;
             didMove=true;
             rook.didMove=true;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 
-    public void bigWhiteCastling(int fi, int fj, Spaceoccupier[][] board, Rook rook) {
+    public void bigWhiteCastling(int fi, int fj, Spaceoccupier[][] board,Board boards, Rook rook) {
         if (isValidBigWhiteCastling(fi, fj, rook, this, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
@@ -134,11 +131,11 @@ public class King extends Piece {
             rook.j=4;
             didMove=true;
             rook.didMove=true;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 
-    public void shortBlackCastling(int fi, int fj, Spaceoccupier[][] board, Rook rook) {
+    public void shortBlackCastling(int fi, int fj, Spaceoccupier[][] board,Board boards, Rook rook) {
         if (isValidShortBlackCastling(fi, fj, rook, this, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
@@ -149,11 +146,11 @@ public class King extends Piece {
             rook.j=2;
             didMove=true;
             rook.didMove=true;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 
-    public void shortWhiteCastling(int fi, int fj, Spaceoccupier[][] board, Rook rook) {
+    public void shortWhiteCastling(int fi, int fj, Spaceoccupier[][] board,Board boards, Rook rook) {
         if (isValidShortWhiteCastling(fi, fj, rook, this, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
@@ -164,7 +161,7 @@ public class King extends Piece {
             rook.j=2;
             didMove=true;
             rook.didMove=true;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 

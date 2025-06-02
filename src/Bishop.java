@@ -13,32 +13,32 @@ public class Bishop extends Piece {
 
     public boolean isBlocked(int fi, int fj, Spaceoccupier[][] board) {
         if (fi > this.i && fj > this.j) {
-            int j = fj;
-            for (int i = fi; i > this.i; i--, j--) {
+            int j = fj--;
+            for (int i = fi--; i > this.i; i--, j--) {
                 Spaceoccupier piece = board[i][j];
                 if (!piece.getName().equals("null")) {
                     return true;
                 }
             }
         } else if (fi > this.i && fj < this.j) {
-            int j = fj;
-            for (int i = fi; i > this.i; i--, j++) {
+            int j = fj++;
+            for (int i = fi--; i > this.i; i--, j++) {
                 Spaceoccupier piece = board[i][j];
                 if (!piece.getName().equals("null")) {
                     return true;
                 }
             }
         } else if (fi < this.i && fj > this.j) {
-            int j = fj;
-            for (int i = fi; i < this.i; i++, j--) {
+            int j = fj--;
+            for (int i = fi++; i < this.i; i++, j--) {
                 Spaceoccupier piece = board[i][j];
                 if (!piece.getName().equals("null")) {
                     return true;
                 }
             }
         } else if (fi < this.i && fj < this.j) {
-            int j = fj;
-            for (int i = fi; i < this.i; i++, j++) {
+            int j = fj++;
+            for (int i = fi++; i < this.i; i++, j++) {
                 Spaceoccupier piece = board[i][j];
                 if (!piece.getName().equals("null")) {
                     return true;
@@ -49,16 +49,16 @@ public class Bishop extends Piece {
     }
 
     public boolean isValidMove(int i, int j, Spaceoccupier[][] board) {
-        return canGo(i, j, board) && !isBlocked(i, j, board);
+        return canGo(i, j, board) && !isBlocked(i, j, board)&& isValidAboutCheck(i, j, board) && !finalHouseIsBlocked(i,j,board);
     }
 
-    public void move(int fi, int fj, Spaceoccupier[][] board) {
+    public void move(int fi, int fj, Spaceoccupier[][] board,Board boards) {
         if (isValidMove(fi, fj, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 

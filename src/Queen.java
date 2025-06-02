@@ -78,19 +78,16 @@ public class Queen extends Piece {
     }
 
     public boolean isValidMove(int fi, int fj, Spaceoccupier[][] board) {
-        if (canGo(fi, fj, board)) {
-            return true;
-        }
-        return false;
+        return canGo(i,j,board) && !isBlocked(i,j,board)&& isValidAboutCheck(i, j, board) && !finalHouseIsBlocked(i,j,board);
     }
 
-    public void move(int fi, int fj, Spaceoccupier[][] board) {
+    public void move(int fi, int fj, Spaceoccupier[][] board,Board boards) {
         if (isValidMove(fi, fj, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            Board.moveNumber++;
+            boards.move();
         }
     }
 

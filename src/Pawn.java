@@ -7,6 +7,44 @@ public class Pawn extends Piece {
         super(color, i, j, "pawn");
     }
 
+    public void upgradePawn(int fi, int fj, Spaceoccupier[][] board, int iChoice) {
+        if (this.color == 'b' && fi == 0) {
+            board[fi][fj] = new Empty();
+            switch (iChoice){
+                case 0 -> {
+                    board[fi][fj] = new Queen('b', fi, fj);
+                }
+                case 1 -> {
+                    board[fi][fj] = new Rook('b', fi, fj);
+                }
+                case 2 -> {
+                    board[fi][fj] = new Bishop('b', fi, fj);
+                }
+                case 3 -> {
+                    board[fi][fj] = new Knight('b', fi, fj);
+                }
+            }
+        }
+        if (this.color == 'w' && fi == 7) {
+            board[fi][fj] = new Empty();
+            switch (iChoice){
+                case 7 -> {
+                    board[fi][fj] = new Queen('w', fi, fj);
+                }
+                case 6 -> {
+                    board[fi][fj] = new Rook('w', fi, fj);
+                }
+                case 5 -> {
+                    board[fi][fj] = new Bishop('w', fi, fj);
+                }
+                case 4 -> {
+                    board[fi][fj] = new Knight('w', fi, fj);
+                }
+            }
+        }
+    }
+
+
     public boolean canGo(int fi, int fj, Spaceoccupier[][] board) {
         if (this.color == 'w') {
             if (this.PawnMoves == 0 && this.j == fj && fi == this.i + 2 &&
@@ -43,18 +81,18 @@ public class Pawn extends Piece {
         return false;
     }
 
-    public boolean isValidMove(int fi, int fj, Spaceoccupier[][] board) {
-        return canGo(fi, fj, board)||canEnPassant(fi, fj, board);
+    public boolean isValidMove(int fi, int fj, Spaceoccupier[][] board,Board boards) {
+        return (canGo(fi, fj, board)||canEnPassant(fi, fj,board,boards))&& isValidAboutCheck(i, j, board);
     }
 
-    private boolean canEnPassant(int i, int j, Spaceoccupier[][] board) {
+    private boolean canEnPassant(int i, int j, Spaceoccupier[][] board,Board boards) {
         if (j < 0 || j > 7)
             return false;
         Spaceoccupier sp = board[i][j];
         if(this.color=='w'){
             if(board[4][j] instanceof Pawn){
             Pawn pawn =(Pawn) board[4][j];
-                if (this.i == 4 && Math.abs(j - this.j) == 1 && i == 5 && pawn.color=='b' && pawn.doubleMove && Board.moveNumber==pawn.perPawnMoves) {
+                if (this.i == 4 && Math.abs(j - this.j) == 1 && i == 5 && pawn.color=='b' && pawn.doubleMove && boards.moveNumber==pawn.perPawnMoves) {
 
                     return true;
                 }
@@ -63,7 +101,7 @@ public class Pawn extends Piece {
         else{
             if(board[3][j] instanceof Pawn){
                 Pawn pawn =(Pawn) board[3][j];
-                    if (this.i == 3 && Math.abs(j - this.j) == 1 && i == 2 && pawn.color=='w' && pawn.doubleMove && Board.moveNumber==pawn.perPawnMoves) {
+                    if (this.i == 3 && Math.abs(j - this.j) == 1 && i == 2 && pawn.color=='w' && pawn.doubleMove && boards.moveNumber==pawn.perPawnMoves) {
 
                         return true;
                     }
@@ -86,8 +124,8 @@ public class Pawn extends Piece {
 
 
 
-    public void move(int fi, int fj, Spaceoccupier[][] board) {
-        if (isValidMove(fi, fj, board)) {
+    public void move(int fi, int fj, Spaceoccupier[][] board, Board boards) {
+        if (isValidMove(fi, fj, board,boards)) {
             if (this.color == 'w' && Math.abs(fj - this.j) == 1 && board[fi][fj].getName().equals("null")) {
                 board[this.i][fj] = new Empty();
             }
@@ -98,7 +136,7 @@ public class Pawn extends Piece {
 
             if (Math.abs(fi - this.i) == 2) {
                 this.doubleMove = true;
-                perPawnMoves=Board.moveNumber;
+                perPawnMoves=boards.moveNumber;
             }
             else {
                 this.doubleMove = false;
@@ -108,7 +146,7 @@ public class Pawn extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            Board.moveNumber++;
+            boards.move();
 
 
         }
