@@ -72,7 +72,8 @@ public class King extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            didMove = true;
+            didMove=true;
+            Board.moveNumber++;
         }
     }
 
@@ -113,11 +114,12 @@ public class King extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            board[7][4] = rook;
-            board[7][7] = new Empty();
-            rook.j = 4;
-            didMove = true;
-            rook.didMove = true;
+            board[7][4]=rook;
+            board[7][7]=new Empty();
+            rook.j=4;
+            didMove=true;
+            rook.didMove=true;
+            Board.moveNumber++;
         }
     }
 
@@ -127,11 +129,12 @@ public class King extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            board[0][4] = rook;
-            board[0][7] = new Empty();
-            rook.j = 4;
-            didMove = true;
-            rook.didMove = true;
+            board[0][4]=rook;
+            board[0][7]=new Empty();
+            rook.j=4;
+            didMove=true;
+            rook.didMove=true;
+            Board.moveNumber++;
         }
     }
 
@@ -141,11 +144,12 @@ public class King extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            board[7][2] = rook;
-            board[7][0] = new Empty();
-            rook.j = 2;
-            didMove = true;
-            rook.didMove = true;
+            board[7][2]=rook;
+            board[7][0]=new Empty();
+            rook.j=2;
+            didMove=true;
+            rook.didMove=true;
+            Board.moveNumber++;
         }
     }
 
@@ -155,11 +159,12 @@ public class King extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
-            board[0][2] = rook;
-            board[0][0] = new Empty();
-            rook.j = 2;
-            didMove = true;
-            rook.didMove = true;
+            board[0][2]=rook;
+            board[0][0]=new Empty();
+            rook.j=2;
+            didMove=true;
+            rook.didMove=true;
+            Board.moveNumber++;
         }
     }
 
