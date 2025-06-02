@@ -60,6 +60,7 @@ public class Rook extends Piece {
             this.i = fi;
             this.j = fj;
             didMove = true;
+            Board.moveNumber++;
         }
     }
 
