@@ -1,6 +1,6 @@
 public class Pawn extends Piece {
     public int PawnMoves = 0;
-
+    //slm
     Pawn(char color , int i , int j){
         super(color,i,j,"pawn");
     }
