@@ -73,7 +73,9 @@ public class Queen extends Piece {
     }
 
     public boolean canGo(int fi, int fj, Spaceoccupier[][] board) {
-        if (fi == i || fj == j || Math.abs(fi - i) == Math.abs(fj - j)) { return true; }
+        if (fi == i || fj == j || Math.abs(fi - i) == Math.abs(fj - j)) {
+            return true;
+        }
         return false;
     }
 
