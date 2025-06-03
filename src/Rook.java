@@ -49,17 +49,18 @@ public class Rook extends Piece {
     }
 
     public boolean isValidMove(int i, int j, Spaceoccupier[][] board) {
-        return canGo(i, j) && !isBlocked(i, j, board);
+        return canGo(i, j) && !isBlocked(i, j, board) && isValidAboutCheck(i, j, board) && !finalHouseIsBlocked(i,j,board);
     }
 
     @Override
-    public void move(int fi, int fj, Spaceoccupier[][] board) {
+    public void move(int fi, int fj, Spaceoccupier[][] board,Board boards) {
         if (isValidMove(fi, fj, board)) {
             board[fi][fj] = this;
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
             didMove = true;
+            boards.move();
         }
     }
 

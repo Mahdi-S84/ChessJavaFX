@@ -1,6 +1,7 @@
 public class Spaceoccupier {
     char color;
 
+
     public boolean isValidMove(int i, int j) {
         return false;
     }
