@@ -157,44 +157,41 @@ public class  Board {
 
         for (int i = 0; i < 9; i++) {
             boolean isSame = true;
-
             for (int j = 0; j < rows; j++) {
                 for (int k = 0; k < columns; k++) {
-
                     Spaceoccupier a = save[i][j][k];
                     Spaceoccupier b = save[9][j][k];
-
-                    // بررسی null بودن
-                    if ((a == null && b != null) || (a != null && b == null)) {
+                    if ((a.getName().equals("null") && !b.getName().equals("null")) || (!a.getName().equals("null") && b.getName().equals("null"))) {
                         isSame = false;
                         break;
                     }
 
-                    if (a != null && b != null) {
-                        // مقایسه نوع کلاس (مثلاً Pawn, Rook, ...)
-                        if (a.getClass() != b.getClass()) {
+                    else{
+                        if(a.getClass() != b.getClass()) {
                             isSame = false;
                             break;
                         }
-
-                        // مقایسه رنگ با == چون فرض می‌کنیم color یک فیلد از نوع String literal هست (نه new String)
                         if (a.color != b.color) {
                             isSame = false;
                             break;
                         }
                     }
                 }
-                if (!isSame) break;
+                if (!isSame){
+                    break;
+                }
             }
 
-            if (isSame) repeatCount++;
+            if (isSame){
+                repeatCount++;
+            }
         }
 
         return repeatCount >= 2;
     }
 
     public boolean end(){
-        return insufficientPieces()&&threefoldRepetition();
+        return insufficientPieces()&&threefoldRepetition()&&threefoldRepetition();
     }
 
 
