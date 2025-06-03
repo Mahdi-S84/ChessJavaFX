@@ -1,8 +1,22 @@
 public class  Board {
-    static int  rows=8;
+    private int fiftyMoves = 0;
+    static int rows=8;
     static int columns=8;
     public int moveNumber=0;
     private Spaceoccupier[][][] save= new Spaceoccupier[10][rows][columns];
+
+    public void plusFiftyMoves() {
+        fiftyMoves++;
+    }
+
+    public void resetFiftyMoves() {
+        fiftyMoves = 0;
+    }
+
+    public int getFiftyMoves() {
+        return fiftyMoves;
+    }
+
     public void initialSave() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < rows; j++) {
@@ -197,5 +211,11 @@ public class  Board {
         return insufficientPieces()&&threefoldRepetition();
     }
 
+    public boolean isFiftyRule() {
+        if (fiftyMoves == 50) {
+            return true;
+        }
+        return false;
+    }
 
 }

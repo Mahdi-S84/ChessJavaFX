@@ -4,6 +4,14 @@ public class Knight extends Piece {
         super(color, i, j, "knight");
     }
 
+    @Override
+    public boolean isCapture(int fi, int fj, Spaceoccupier[][] board) {
+        if (this.color != board[fi][fj].color) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean canGo(int fi, int fj, Spaceoccupier[][] board) {
         Spaceoccupier piece = board[fi][fj];
         if (piece.color != this.color && (((fi == i - 2) || (fi == i + 2)) && ((fj == j - 1) || (fj == j + 1))) ||
@@ -24,6 +32,11 @@ public class Knight extends Piece {
             this.i = fi;
             this.j = fj;
             boards.move();
+            if (isCapture(fi, fj, board)) {
+                boards.resetFiftyMoves();
+            } else {
+                boards.plusFiftyMoves();
+            }
         }
     }
 

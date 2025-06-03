@@ -7,6 +7,14 @@ public class Pawn extends Piece {
         super(color, i, j, "pawn");
     }
 
+    @Override
+    public boolean isCapture(int fi, int fj, Spaceoccupier[][] board) {
+        if (this.color != board[fi][fj].color) {
+            return true;
+        }
+        return false;
+    }
+
     public void upgradePawn(int fi, int fj, Spaceoccupier[][] board, int iChoice) {
         if (this.color == 'b' && fi == 0) {
             board[fi][fj] = new Empty();
@@ -147,6 +155,11 @@ public class Pawn extends Piece {
             this.i = fi;
             this.j = fj;
             boards.move();
+            if (isCapture(fi, fj, board)) {
+                boards.resetFiftyMoves();
+            } else {
+                boards.plusFiftyMoves();
+            }
 
 
         }

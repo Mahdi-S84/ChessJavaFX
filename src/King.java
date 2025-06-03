@@ -5,6 +5,14 @@ public class King extends Piece {
         super(color, i, j, "king");
     }
 
+    @Override
+    public boolean isCapture(int fi, int fj, Spaceoccupier[][] board) {
+        if (this.color != board[fi][fj].color) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean canGo(int i, int j) {
         if ((((i - this.i <= 1) && (i - this.i >= -1)) && ((j - this.j <= 1) && (j - this.j >= -1))) && ((i - this.i != 0) || (j - this.j != 0))) {
             return true;
@@ -71,6 +79,11 @@ public class King extends Piece {
             this.j = fj;
             didMove=true;
             boards.move();
+            if (isCapture(fi, fj, board)) {
+                boards.resetFiftyMoves();
+            } else {
+                boards.plusFiftyMoves();
+            }
         }
     }
 
@@ -117,6 +130,7 @@ public class King extends Piece {
             didMove=true;
             rook.didMove=true;
             boards.move();
+            boards.plusFiftyMoves();
         }
     }
 
@@ -132,6 +146,7 @@ public class King extends Piece {
             didMove=true;
             rook.didMove=true;
             boards.move();
+            boards.plusFiftyMoves();
         }
     }
 
@@ -147,6 +162,7 @@ public class King extends Piece {
             didMove=true;
             rook.didMove=true;
             boards.move();
+            boards.plusFiftyMoves();
         }
     }
 
@@ -162,6 +178,7 @@ public class King extends Piece {
             didMove=true;
             rook.didMove=true;
             boards.move();
+            boards.plusFiftyMoves();
         }
     }
 

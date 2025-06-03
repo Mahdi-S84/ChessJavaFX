@@ -4,6 +4,14 @@ public class Bishop extends Piece {
         super(color, i, j, "bishop");
     }
 
+    @Override
+    public boolean isCapture(int fi, int fj, Spaceoccupier[][] board) {
+        if (this.color != board[fi][fj].color) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean canGo(int i, int j, Spaceoccupier[][] board) {
         if ((Math.abs(this.i - i) == Math.abs(this.j - j)) && (i - this.i != 0)) {
             return true;
@@ -59,6 +67,11 @@ public class Bishop extends Piece {
             this.i = fi;
             this.j = fj;
             boards.move();
+            if (isCapture(fi, fj, board)) {
+                boards.resetFiftyMoves();
+            } else {
+                boards.plusFiftyMoves();
+            }
         }
     }
 

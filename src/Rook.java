@@ -5,6 +5,14 @@ public class Rook extends Piece {
         super(color, i, j, "rook");
     }
 
+    @Override
+    public boolean isCapture(int fi, int fj, Spaceoccupier[][] board) {
+        if (this.color != board[fi][fj].color) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isBlocked(int fi, int fj, Spaceoccupier[][] board) {
         if (fi == this.i) {
             if (fj > this.j) {

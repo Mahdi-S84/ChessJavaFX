@@ -42,6 +42,8 @@ public abstract class Piece extends Spaceoccupier {
         return color + name;
     }
 
+    public abstract boolean isCapture(int fi, int fj, Spaceoccupier[][] board);
+
     public abstract void move(int fi, int fj, Spaceoccupier[][] board,Board boards);
 
     public abstract boolean canAttack(int targetI, int targetJ, Spaceoccupier[][] board);

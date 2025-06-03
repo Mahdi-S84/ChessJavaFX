@@ -4,6 +4,14 @@ public class Queen extends Piece {
         super(color, i, j, "queen");
     }
 
+    @Override
+    public boolean isCapture(int fi, int fj, Spaceoccupier[][] board) {
+        if (this.color != board[fi][fj].color) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isBlocked(int fi, int fj, Spaceoccupier[][] board) {
         if (fi > this.i && fj > this.j) {
             int j = fj;
