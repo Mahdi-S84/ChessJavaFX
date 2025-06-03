@@ -191,7 +191,7 @@ public class  Board {
     }
 
     public boolean end(){
-        return insufficientPieces()&&threefoldRepetition()&&threefoldRepetition();
+        return insufficientPieces()&&threefoldRepetition();
     }
 
 
