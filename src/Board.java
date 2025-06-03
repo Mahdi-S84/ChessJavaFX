@@ -203,9 +203,111 @@ public class  Board {
 
         return repeatCount >= 2;
     }
+    public static boolean isCheckMate(King king, Spaceoccupier[][] board) {
+        if (!king.isCheck(king.color, board)) {
+            return false;
+        }
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Spaceoccupier s = board[i][j];
+                if (s instanceof Piece && ((Piece) s).color == king.color) {
+                    for (int ti = 0; ti < 8; ti++) {
+                        for (int tj = 0; tj < 8; tj++) {
+                            if(s.getName()=="knight"){
+                                Knight knight = (Knight) s;
+                                if (knight.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if(s.getName()=="bishop"){
+                                Bishop bishop = (Bishop) s;
+                                if (bishop.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if (s.getName() == "rook") {
+                                Rook rook = (Rook) s;
+                                if (rook.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if(s.getName() == "queen"){
+                                Queen queen = (Queen) s;
+                                if (queen.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if(s.getName() == "pawn"){
+                                Pawn pawn = (Pawn) s;
+                                if (pawn.canCapture(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isStaleMate(King king, Spaceoccupier[][] board) {
+        if (king.isCheck(king.color, board)) {
+            return false;
+        }
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Spaceoccupier s = board[i][j];
+                if (s instanceof Piece && ((Piece) s).color == king.color) {
+                    for (int ti = 0; ti < 8; ti++) {
+                        for (int tj = 0; tj < 8; tj++) {
+                            if(s.getName()=="knight"){
+                                Knight knight = (Knight) s;
+                                if (knight.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if(s.getName()=="bishop"){
+                                Bishop bishop = (Bishop) s;
+                                if (bishop.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if (s.getName() == "rook") {
+                                Rook rook = (Rook) s;
+                                if (rook.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if(s.getName() == "queen"){
+                                Queen queen = (Queen) s;
+                                if (queen.isValidMove(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+                            if(s.getName() == "pawn"){
+                                Pawn pawn = (Pawn) s;
+                                if (pawn.canCapture(ti, tj, board)) {
+                                    return false;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
 
     public boolean end(){
-        return insufficientPieces()&&threefoldRepetition();
+        return insufficientPieces()&&threefoldRepetition()&&isFiftyRule();
     }
 
     public boolean isFiftyRule() {

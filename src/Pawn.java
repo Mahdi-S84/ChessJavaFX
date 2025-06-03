@@ -60,13 +60,8 @@ public class Pawn extends Piece {
                     board[this.i + 2][this.j].getName().equals("null")) {
                 return true;
             }
-            if (this.j == fj && fi == this.i + 1 &&
+            else if (this.j == fj && fi == this.i + 1 &&
                     board[this.i + 1][this.j].getName().equals("null")) {
-                return true;
-            }
-            if (fi == this.i + 1 && Math.abs(fj - this.j) == 1 &&
-                    !board[fi][fj].getName().equals("null") &&
-                    board[fi][fj].color == 'b') {
                 return true;
             }
         }
@@ -76,13 +71,27 @@ public class Pawn extends Piece {
                     board[this.i - 2][this.j].getName().equals("null")) {
                 return true;
             }
-            if (this.j == fj && fi == this.i - 1 &&
+            else if (this.j == fj && fi == this.i - 1 &&
                     board[this.i - 1][this.j].getName().equals("null")) {
                 return true;
             }
+        }
+        return false;
+    }
+    public boolean canCapture(int fi,int fj,Spaceoccupier[][] board){
+        if (this.color == 'w') {
+            if (fi == this.i + 1 && Math.abs(fj - this.j) == 1 &&
+                    !board[fi][fj].getName().equals("null") &&
+                    board[fi][fj].color == 'b' &&
+                    isValidAboutCheck(fi,fj,board)) {
+                return true;
+            }
+        }
+        else{
             if (fi == this.i - 1 && Math.abs(fj - this.j) == 1 &&
                     !board[fi][fj].getName().equals("null") &&
-                    board[fi][fj].color == 'w') {
+                    board[fi][fj].color == 'w' &&
+                    isValidAboutCheck(fi,fj,board)) {
                 return true;
             }
         }
@@ -90,7 +99,7 @@ public class Pawn extends Piece {
     }
 
     public boolean isValidMove(int fi, int fj, Spaceoccupier[][] board,Board boards) {
-        return (canGo(fi, fj, board)||canEnPassant(fi, fj,board,boards))&& isValidAboutCheck(i, j, board);
+        return (canGo(fi, fj, board)||canEnPassant(fi, fj,board,boards)||canCapture(fi,fj,board))&& isValidAboutCheck(i, j, board);
     }
 
     private boolean canEnPassant(int i, int j, Spaceoccupier[][] board,Board boards) {
@@ -154,6 +163,7 @@ public class Pawn extends Piece {
             board[this.i][this.j] = new Empty();
             this.i = fi;
             this.j = fj;
+            this.PawnMoves++;
             boards.move();
             if (isCapture(fi, fj, board)) {
                 boards.resetFiftyMoves();
