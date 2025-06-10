@@ -100,7 +100,7 @@ public class  Board {
         }
         for(int j = 0; j<8; j++){
             for(int k = 0; k<8; k++){
-                save[10][j][k]=board[j][k];
+                save[9][j][k]=board[j][k];
             }
         }
     }
