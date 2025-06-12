@@ -29,18 +29,15 @@ public class Knight extends Piece {
     
     @Override
     public void move(int fi, int fj, Spaceoccupier[][] board, Board boards) {
-        // چک می‌کنیم حرکت قانونی باشه
         if (isValidMove(fi, fj, board)) {
-            // قبل از جایگذاری مهره، چک می‌کنیم مهره مقصد شاه نباشد
-            if (!(board[fi][fj] instanceof King)) { // شاه حذف نشود
+            if (!(board[fi][fj] instanceof King)) {
                 board[fi][fj] = this;
                 board[this.i][this.j] = new Empty();
                 this.i = fi;
                 this.j = fj;
                 boards.move();
             } else {
-                // اگر مقصد شاه بود، حرکت انجام نشود (یا پیام خطا بده)
-                System.out.println("حرکت غیرمجاز: نمی‌توانید شاه را حذف کنید.");
+                System.out.println("invalid move, you can't attack king!");
             }
         }
     }

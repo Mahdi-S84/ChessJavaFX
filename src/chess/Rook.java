@@ -73,6 +73,8 @@ public String toString() {
 
     @Override
     public boolean canAttack(int targetI, int targetJ, Spaceoccupier[][] board) {
-        return isValidMove(targetI, targetJ);
+        return canGo(targetI, targetJ, board)
+                && !isBlocked(targetI, targetJ, board)
+                && !finalHouseIsBlocked(targetI, targetJ, board);
     }
 }

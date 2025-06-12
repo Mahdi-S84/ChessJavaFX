@@ -18,8 +18,8 @@ public class Bishop extends Piece {
 
         if (Math.abs(dx) != Math.abs(dy)) return false;
 
-        int stepX = dx > 0 ? 1 : -1;
-        int stepY = dy > 0 ? 1 : -1;
+        int stepX = Integer.compare(dx, 0);
+        int stepY = Integer.compare(dy, 0);
 
         int x = this.i + stepX;
         int y = this.j + stepY;
@@ -30,8 +30,10 @@ public class Bishop extends Piece {
             y += stepY;
         }
 
-        return true;
+        return !(board[fi][fj] instanceof Piece && board[fi][fj].color == this.color);
     }
+
+
 
     @Override
     public boolean isValidMove(int fi, int fj, Spaceoccupier[][] board) {

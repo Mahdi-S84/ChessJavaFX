@@ -95,7 +95,6 @@ public class  Board {
         }
     }
     public void save(Spaceoccupier[][] board) {
-        // شیفت دادن آرایه: از 1 تا 9 به عقب
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 8; j++) {
                 for (int k = 0; k < 8; k++) {
@@ -104,7 +103,6 @@ public class  Board {
             }
         }
     
-        // جایگزینی حرکت جدید در اندیس 9
         for (int j = 0; j < 8; j++) {
             for (int k = 0; k < 8; k++) {
                 save[9][j][k] = board[j][k];
